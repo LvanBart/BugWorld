@@ -121,13 +121,35 @@ public class Bug {
 	}
 	
 	public void setAllAttributes() {
-		System.out.println("Enter a species: ");
 		Scanner scan = new Scanner(System.in);
-		String newSpecies = scan.next();
 		
+		System.out.println("Enter a species: ");
+		String newSpecies = scan.next();
 		this.species = newSpecies;
 		
 		System.out.println("Enter a name: ");
+		String newName = scan.next();
+		this.name = newName;
+		
+		System.out.println("Enter a symbol: ");
+		char newSymbol = scan.next().charAt(0);
+		this.symbol = newSymbol;
+		
+		System.out.println("Enter x coordinate (integer): ");
+		int newX = scan.nextInt();
+		this.x = newX;
+
+		System.out.println("Enter y coordinate (integer): ");
+		int newY = scan.nextInt();
+		this.y = newY;
+		
+		System.out.println("Enter energy level (integer): ");
+		int newEnergy = scan.nextInt();
+		this.energy = newEnergy;
+		
+		System.out.println("Enter id (integer): ");
+		int newId = scan.nextInt();
+		this.id = newId;
 		
 		scan.close();
 		

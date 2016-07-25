@@ -18,22 +18,14 @@ public class Test {
 		double randNum;
 		String direction = "N";
 		
-		/* System.out.println(bug3.toText());
-		System.out.println(bug2.toText());
-		bug1.setSpecies("mosquito");
-		bug2.setName("Phillip");
-		bug2.setSymbol('b');
-		bug2.setX(200);
-		bug2.setY(200);
-		bug2.setEnergy(70);
-		bug2.setId(1003);
-		System.out.println(bug2.toText());
-		System.out.println(bug1.toText());
-		System.out.println(bug1.toString()); */
+for (Bug b : bugs) {
+	System.out.println(b.toText());
+}
 		
-		System.out.println(bug1.toText());
-		bug1.setAllAttributes();
-		System.out.println(bug1.toText());
+for (int i = 0; i < bugs.size(); i++)
+{
+	System.out.println(bugs.get(i).toText());
+}
 		
 		
 		
