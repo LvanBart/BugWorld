@@ -109,15 +109,28 @@ public class Bug {
 	
 	// other methods
 	
-	public void move(String direction, int distance) {
+	/*
+	 * 
+	 */
+	public void move(String direction, int distance, int maxX, int maxY) {
 		if (direction.equals("N")) {
-			this.y -= distance;			
+			this.y -= distance;
+			if (this.y < 1) {
+				this.y = maxY - (1 - this.y);
+			}
 		} else if (direction.equals("S")) {
 			this.y += distance;
+			if (this.y > maxY) {
+				this.y = 1 + (this.y - maxY);
+			}
 		} else if (direction.equals("E")) {
 			this.x += distance;
 		} else if (direction.equals("W")) {
 			this.x -= distance;
+			if (this.x < 1) {
+				this.x = maxX - (1 - this.y);
+			}
+			
 		}
 		
 		

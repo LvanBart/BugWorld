@@ -37,12 +37,12 @@ public class Test {
 					direction = "W";
 				}
 					
-				bug3.move(direction, 1);
+				bug3.move(direction, 1, 50, 50);
 	
 			}
 		
 		// testing world
-		new World();
+		new World(20, 20);
 			
 			
 	}
