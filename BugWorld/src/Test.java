@@ -41,9 +41,8 @@ public class Test {
 	
 			}
 		
-		// testing bug subclasses
-		JumpingBug jb1 = new JumpingBug();
-		System.out.println(jb1.toText());
+		// testing world
+		new World();
 			
 			
 	}
