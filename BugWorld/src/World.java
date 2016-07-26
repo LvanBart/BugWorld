@@ -61,8 +61,11 @@ public class World {
 		} */
 		
 		this.drawWorld();
-		this.updateWorld();
-		this.drawWorld();
+		
+		for (int i = 0; i < 5; i++) {
+			this.updateWorld();
+			this.drawWorld();
+		}
 		
 		
 	}
@@ -126,11 +129,13 @@ public class World {
 								
 				
 			// decide if bug will move (50/50 chance)
-			randNum = Math.random();
+			/* randNum = Math.random();
 			
 			if (randNum < 0.5) {
 				b.move(direction, 3, (int)width, (int)height);
-			}
+			} */
+				
+			b.move(direction, 2, (int)width, (int)height);
 		}
 	
 	

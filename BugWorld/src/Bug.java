@@ -110,25 +110,29 @@ public class Bug {
 	// other methods
 	
 	/*
-	 * 
+	 * Moves bug specified distance in specified direction.
+	 * If bug moves out of bounds, positions bug at edge of border
 	 */
 	public void move(String direction, int distance, int maxX, int maxY) {
 		if (direction.equals("N")) {
 			this.y -= distance;
 			if (this.y < 1) {
-				this.y = maxY - (1 - this.y);
+				this.y = 1;
 			}
 		} else if (direction.equals("S")) {
 			this.y += distance;
 			if (this.y > maxY) {
-				this.y = 1 + (this.y - maxY);
+				this.y = maxY;
 			}
 		} else if (direction.equals("E")) {
 			this.x += distance;
+			if (this.x > maxX) {
+				this.x = maxX;
+			}
 		} else if (direction.equals("W")) {
 			this.x -= distance;
 			if (this.x < 1) {
-				this.x = maxX - (1 - this.y);
+				this.x = 1;
 			}
 			
 		}
