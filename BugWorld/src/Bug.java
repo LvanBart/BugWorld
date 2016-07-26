@@ -3,20 +3,21 @@ import java.util.Scanner;
 
 public class Bug {
 	
-	private String species;
-	private String name;
-	private char symbol;
-	private int x;
-	private int y;
-	private int energy;
-	private int id;
+	protected String species;
+	protected String name;
+	protected char symbol;
+	protected int x;
+	protected int y;
+	protected int energy;
+	protected int id;
 	
 	// constructors
 	
+	//default constructor
 	public Bug () {
 		this.species = "ant";
 		this.name = "Gerald";
-		this.symbol = 'A';
+		this.symbol = 'B';
 		this.x = 100;
 		this.y = 100;
 		this.energy = 100;
@@ -106,6 +107,8 @@ public class Bug {
 		this.id = id;
 	}
 	
+	// other methods
+	
 	public void move(String direction, int distance) {
 		if (direction.equals("N")) {
 			this.y -= distance;			
@@ -119,6 +122,10 @@ public class Bug {
 		
 		
 	}
+	
+	/**
+	 *  Prompts the user for attributes, then sets bug's attributes to the provided values
+	 */
 	
 	public void setAllAttributes() {
 		Scanner scan = new Scanner(System.in);
