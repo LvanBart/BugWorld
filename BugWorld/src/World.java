@@ -1,9 +1,9 @@
-import java.awt.List;
+
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 public class World {
 	private ArrayList<Bug> bugs;
+	private ArrayList<Plant> plants;
 	private double height;
 	private double width;
 	
@@ -38,8 +38,11 @@ public class World {
 	
 	public World (double height, double width) {
 		bugs = new ArrayList<Bug>();
+		plants = new ArrayList<Plant>();
 		this.height = height;
 		this.width = width;
+		
+		// create bugs, add to bugs ArrayList
 		
 		Bug bug1 = new Bug("fly", "James", 'A', 12, 10, 50, 7628368);
 		Bug bug2 = new Bug("cockroach", "Penelope", 'B', 20, 20, 23, 73645);
@@ -51,6 +54,17 @@ public class World {
 		bugs.add(bug3);
 		bugs.add(bug4);
 		bugs.add(bug5);
+		
+		// create plants, add to plants ArrayList
+		Plant plant1 = new Plant(0, 2, 3);
+		Plant plant2 = new Plant(3, 5, 10);
+		Plant plant3 = new Plant(6, 12, 5);
+		Plant plant4 = new Plant(9, 1, 2);
+		
+		plants.add(plant1);
+		plants.add(plant2);
+		plants.add(plant3);
+		plants.add(plant4);
 		
 		
 		/*for (int i = 0; i < 10; i++) {
@@ -70,7 +84,10 @@ public class World {
 		
 	}
 	
-	// drawWorld
+	/*
+	 * draws bugs and plants in world
+	 * plants are drawn over bugs
+	 */
 	public void drawWorld () {
 		// draw top border
 		System.out.print("|");
@@ -85,6 +102,7 @@ public class World {
 			System.out.print("|");
 			for (int col = 1; col < height + 1; col++) {
 				String letter = " ";
+				// check if there is a bug at current position
 				for (Bug b: this.bugs) {
 					
 					if (b.getX() == col && b.getY() == row) {
@@ -92,6 +110,13 @@ public class World {
 					}	
 					
 				}
+				// check if there is a plant at current position
+				for (Plant p: this.plants) {
+					if (p.getX() == col && p.getY() == row) {
+						letter = p.getSize() + "";
+					}
+				}
+				
 				System.out.print(letter);
 			}
 			System.out.println("|");

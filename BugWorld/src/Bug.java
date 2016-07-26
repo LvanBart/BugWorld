@@ -18,8 +18,8 @@ public class Bug {
 		this.species = "ant";
 		this.name = "Gerald";
 		this.symbol = 'B';
-		this.x = 100;
-		this.y = 100;
+		this.x = 1;
+		this.y = 1;
 		this.energy = 100;
 		this.id = 12345;
 		
