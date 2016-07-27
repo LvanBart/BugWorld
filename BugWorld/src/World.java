@@ -154,28 +154,39 @@ public class World {
 	}
 
 	/*
-	 * Makes bugs move in random direction
+	 * Makes bugs move
 	 */
 	public void updateWorld() {
-
+		// make each bug move
 		for (Bug b : this.bugs) {
-			// if smells food, move in direction of food
+			String direction = b.smellFood(this, 2);
 			
+			// if bug doesn't smell food, pick random direction
+			if (direction.equals("none")) {
 			
-			// else move in random direction
-			moveRandom(b);
+				double randNum = Math.random();
+				
+				if (randNum < 0.25) {
+					direction = "N";
+				} else if (randNum < 0.5) {
+					direction = "S";
+				} else if (randNum < 0.75) {
+					direction = "E";
+				} else {
+					direction = "W";
+				}
+			}
+			
+			moveBug(b, direction);
 		}
 
 	}
 	
 	/*
-	 * moves the bug in a random direction, if the space there is free
+	 * moves the bug in specified direction, if the space there is free
 	 * if there is a plant there, bug eats the plant
 	 */
-	public void moveRandom(Bug b) {
-		// find random direction
-		double randNum = Math.random();
-		
+	public void moveBug(Bug b, String direction) {
 		// get bug's location
 		int bugX = b.getX();
 		int bugY = b.getY();
@@ -183,7 +194,7 @@ public class World {
 		int bugNewY = 1;
 		
 		// north
-		if (randNum < 0.25) {
+		if (direction.equals("N")) {
 			bugNewX = bugX;
 			bugNewY = bugY - 1;
 			// make sure bugs don't move to where another plant, bug, or obstacle is
@@ -195,7 +206,7 @@ public class World {
 				b.move("N", 1, width, height);
 			}
 		// south
-		} else if (randNum < 0.5) {
+		} else if (direction.equals("S")) {
 			bugNewX = bugX;
 			bugNewY = bugY + 1;
 			
@@ -206,7 +217,7 @@ public class World {
 			}
 		
 		// east
-		} else if (randNum < 0.75) {
+		} else if (direction.equals("E")) {
 			bugNewX = bugX + 1;
 			bugNewY = bugY;
 			

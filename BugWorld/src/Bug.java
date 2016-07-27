@@ -186,7 +186,7 @@ public class Bug {
 	 */
 	public String smellFood(World world, int range) {
 		
-		for (int curDistance = 1; curDistance < range; curDistance++ ) {
+		for (int curDistance = 1; curDistance <= range; curDistance++ ) {
 			int curX = 1;
 			int curY = 1;
 			
@@ -195,7 +195,7 @@ public class Bug {
 			curY = this.y - curDistance;
 					
 			if (world.getPlantAt(curX, curY) != null) {
-				return "north";
+				return "N";
 			}
 			
 			// south
@@ -203,7 +203,7 @@ public class Bug {
 			curY = this.y + curDistance;
 					
 			if (world.getPlantAt(curX, curY) != null) {
-				return "south";
+				return "S";
 			}
 			
 			// east
@@ -211,7 +211,7 @@ public class Bug {
 			curY = this.y;
 					
 			if (world.getPlantAt(curX, curY) != null) {
-				return "east";
+				return "E";
 			}
 			
 			// west
@@ -219,7 +219,7 @@ public class Bug {
 			curY = this.y;
 					
 			if (world.getPlantAt(curX, curY) != null) {
-				return "west";
+				return "W";
 			}
 		}
 		
