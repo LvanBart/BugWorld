@@ -1,40 +1,17 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class World {
+	private char[] symbols = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}; 
 	private ArrayList<Bug> bugs;
 	private ArrayList<Plant> plants;
 	private ArrayList<Obstacle> obstacles;
 	private int height;
 	private int width;
 
-	// constructors
-	public World() {
-		bugs = new ArrayList<Bug>();
-		this.height = 50;
-		this.width = 50;
 
-		/*
-		 * Bug bug1 = new Bug("fly", "James", 'B', 12, 10, 50, 7628368); Bug
-		 * bug2 = new Bug("cockroach", "Penelope", 'C', 20, 20, 23, 73645); Bug
-		 * bug3 = new JumpingBug("grasshopper", "Earl", 'J', 1, 1, 45, 2839847);
-		 * Bug bug4 = new CrawlingBug("beetle", "Patty", 'C', 8, 19, 45,
-		 * 2839847); Bug bug5 = new FlyingBug("bee", "Lola", 'F', 4, 7, 45,
-		 * 2839847); bugs.add(bug1); bugs.add(bug2); bugs.add(bug3);
-		 * bugs.add(bug4); bugs.add(bug5);
-		 */
-
-		for (int i = 0; i < 10; i++) {
-			int randX = (int) (1 + Math.random() * width - 1);
-			int randY = (int) (1 + Math.random() * height - 1);
-
-			bugs.add(new Bug("ant", "bug", '1', randX, randY, 50, 2364283, 2));
-		}
-
-		this.drawWorld();
-	}
-
-	public World(int height, int width) {
+	public World(int width, int height) {
 		bugs = new ArrayList<Bug>();
 		plants = new ArrayList<Plant>();
 		obstacles = new ArrayList<Obstacle>();
@@ -43,58 +20,25 @@ public class World {
 
 		// create bugs, add to bugs ArrayList
 
-		Bug bug1 = new Bug("fly", "James", 'a', 2, 2, 50, 7628368, 2);
-		Bug bug2 = new Bug("cockroach", "Penelope", 'b', 20, 20, 23, 73645, 2);
-		Bug bug3 = new JumpingBug("grasshopper", "Earl", 'c', 8, 9, 45, 2839847);
-		Bug bug4 = new CrawlingBug("beetle", "Patty", 'd', 8, 19, 45, 2839847);
-		Bug bug5 = new FlyingBug("bee", "Lola", 'e', 4, 7, 45, 2839847);
+		Bug bug1 = new Bug("ant", "dsfg", 'a', 2, 3, 20, 7465386, 2);
 		bugs.add(bug1);
-		bugs.add(bug2);
-		bugs.add(bug3);
-		bugs.add(bug4);
-		bugs.add(bug5);
-
-		// create plants, add to plants ArrayList
-		/*Plant plant1 = new Plant(0, 1, 1);
-		Plant plant2 = new Plant(1, 1, 2);
-		Plant plant3 = new Plant(2, 1, 3);
-		Plant plant4 = new Plant(3, 2, 1);
-		Plant plant5 = new Plant(4, 2, 3);
-		Plant plant6 = new Plant(5, 3, 1);
-		Plant plant7 = new Plant(6, 3, 2);
-		Plant plant8 = new Plant(7, 3, 3);
-
+		
+		Plant plant1 = new Plant(6, 3, 2);
 		plants.add(plant1);
-		plants.add(plant2);
-		plants.add(plant3);
-		plants.add(plant4);
-		plants.add(plant5);
-		plants.add(plant6);
-		plants.add(plant7);
-		plants.add(plant8);*/
 
-		// create obstacles, add to obstacles ArrayList
-		Obstacle obstacle1 = new Obstacle (1, 1);
-		Obstacle obstacle2 = new Obstacle (1, 2);
-		Obstacle obstacle3 = new Obstacle (1, 3);
-		Obstacle obstacle4 = new Obstacle (2, 1);
-		// Obstacle obstacle5 = new Obstacle (2, 3);
-		Obstacle obstacle6 = new Obstacle (3, 1);
-		Obstacle obstacle7 = new Obstacle (3, 2);
-		Obstacle obstacle8 = new Obstacle (3, 3);
-
-		obstacles.add(obstacle1);
-		obstacles.add(obstacle2);
-		obstacles.add(obstacle3);
-		obstacles.add(obstacle4);
-		// obstacles.add(obstacle5);
-		obstacles.add(obstacle6);
-		obstacles.add(obstacle7);
-		obstacles.add(obstacle8);
-
+		
+		// set up text based menu
+		Scanner scan = new Scanner(System.in); 
+		
+		System.out.println("How many times do you want world to refresh?: ");
+		int numRefreshes = scan.nextInt();
+		
+		scan.close();
+		
 		this.drawWorld();
-
-		for (int i = 0; i < 5; i++) {
+		
+		// refresh world specified number of times
+		for (int i = 0; i < numRefreshes; i++) {
 			this.updateWorld();
 			this.drawWorld();
 		}
@@ -107,15 +51,15 @@ public class World {
 	public void drawWorld() {
 		// draw top border
 		System.out.print("|");
-		for (int i = 0; i < width; i++) {
+		for (int i = 0; i < this.width; i++) {
 			System.out.print("-");
 		}
 		System.out.println("|");
 
 		// draw grid contents
-		for (int row = 1; row < width + 1; row++) {
+		for (int row = 1; row < this.height + 1; row++) {
 			System.out.print("|");
-			for (int col = 1; col < height + 1; col++) {
+			for (int col = 1; col < width + 1; col++) {
 				String letter = " ";
 				// check if there is a bug at current position
 				for (Bug b : this.bugs) {
@@ -177,7 +121,13 @@ public class World {
 				}
 			}
 			
+			System.out.println(direction);
 			moveBug(b, direction);
+		}
+		
+		// make plants grow
+		for (Plant p: this.plants) {
+			p.grow();
 		}
 
 	}

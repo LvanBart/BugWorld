@@ -185,6 +185,7 @@ public class Bug {
 	/* returns the direction in which there is food within the specified range of the bug
 	 * if the bug doesn't smell food, returns "none"
 	 * priority is given to North, then South, then East, then West
+	 * bugs do not smell plants which are size 0
 	 */
 	public String smellFood(World world) {
 		
@@ -196,7 +197,7 @@ public class Bug {
 			curX = this.x;
 			curY = this.y - curDistance;
 					
-			if (world.getPlantAt(curX, curY) != null) {
+			if (world.getPlantAt(curX, curY) != null && world.getPlantAt(curX, curY).getSize() > 0) {
 				return "N";
 			}
 			
@@ -204,7 +205,7 @@ public class Bug {
 			curX = this.x;
 			curY = this.y + curDistance;
 					
-			if (world.getPlantAt(curX, curY) != null) {
+			if (world.getPlantAt(curX, curY) != null && world.getPlantAt(curX, curY).getSize() > 0) {
 				return "S";
 			}
 			
@@ -212,7 +213,7 @@ public class Bug {
 			curX = this.x + curDistance;
 			curY = this.y;
 					
-			if (world.getPlantAt(curX, curY) != null) {
+			if (world.getPlantAt(curX, curY) != null && world.getPlantAt(curX, curY).getSize() > 0) {
 				return "E";
 			}
 			
@@ -220,7 +221,7 @@ public class Bug {
 			curX = this.x - curDistance;
 			curY = this.y;
 					
-			if (world.getPlantAt(curX, curY) != null) {
+			if (world.getPlantAt(curX, curY) != null && world.getPlantAt(curX, curY).getSize() > 0) {
 				return "W";
 			}
 		}

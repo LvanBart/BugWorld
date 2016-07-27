@@ -42,7 +42,7 @@ public class Test {
 			}
 		
 		// testing world
-		new World(10, 10);
+		new World(20, 10);
 			
 			
 	}

@@ -43,10 +43,10 @@ public class Plant {
 		}
 	}
 	
-	// causes plant's size to decrease by 1, to a minimum of 0
+	// causes plant's size to decrease by 2, to a minimum of 0
 	public void shrink () {
 		if (this.size > 0) {
-			this.size--;
+			this.size -= 2;
 		}
 	}
 
