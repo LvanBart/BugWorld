@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class World {
-	private char[] symbols = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'}; 
+	private char[] symbols = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 't'}; 
 	private ArrayList<Bug> bugs;
 	private ArrayList<Plant> plants;
 	private ArrayList<Obstacle> obstacles;
@@ -18,14 +18,6 @@ public class World {
 		this.height = height;
 		this.width = width;
 
-		// create bugs, add to bugs ArrayList
-
-		Bug bug1 = new Bug("ant", "dsfg", 'a', 2, 3, 20, 7465386, 2);
-		bugs.add(bug1);
-		
-		Plant plant1 = new Plant(6, 3, 2);
-		plants.add(plant1);
-
 		
 		// set up text based menu
 		Scanner scan = new Scanner(System.in); 
@@ -33,7 +25,49 @@ public class World {
 		System.out.println("How many times do you want world to refresh?: ");
 		int numRefreshes = scan.nextInt();
 		
+		System.out.println("Enter number of bugs (max 20: ");
+		int numBugs = scan.nextInt();
+		if (numBugs < 0) {
+			numBugs = 0;
+		}
+		if (numBugs > 20) {
+			numBugs = 20;
+		}
+		
+		System.out.println("Enter number of plants: ");
+		int numPlants = scan.nextInt();
+		if (numPlants < 0) {
+			numPlants = 0;
+		}
+		
+		System.out.println("Enter world width: ");
+		int worldWidth = scan.nextInt();
+		this.width = worldWidth;
+		
+		System.out.println("Enter world height: ");
+		int worldHeight = scan.nextInt();
+		this.height = worldHeight;
+		
 		scan.close();
+		
+		// create bugs (with random positions), add to bugs ArrayList
+		for (int i = 0; i < symbols.length; i++) {
+			int x = (int)(1 + Math.random() * width - 1);
+			int y = (int)(1 + Math.random() * height - 1);
+			char bugSymbol = symbols[i];
+			
+			Bug bug = new Bug("ant", "Bob", bugSymbol, x, y, 50, 123, 2);
+			this.bugs.add(bug);
+		}
+		
+		// create plants (all start at size 0) at random positions
+		for (int i = 0; i < 3; i++) {
+			int x = (int)(1 + Math.random() * width - 1);
+			int y = (int)(1 + Math.random() * height - 1);
+			
+			this.plants.add(new Plant(0, x, y));
+		}
+		
 		
 		this.drawWorld();
 		
@@ -121,7 +155,6 @@ public class World {
 				}
 			}
 			
-			System.out.println(direction);
 			moveBug(b, direction);
 		}
 		
