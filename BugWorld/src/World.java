@@ -72,7 +72,12 @@ public class World {
 		}
 		
 		// create obstacles at random positions
-		
+		for (int i = 0; i < numObstacles; i++) {
+			int x = 1 + (int)(Math.random() * worldWidth);
+			int y = 1 + (int)(Math.random() * worldHeight);
+			
+			this.obstacles.add(new Obstacle(x, y));
+		}
 		
 		this.drawWorld();
 		
@@ -85,7 +90,7 @@ public class World {
 	}
 
 	/*
-	 * draws bugs and plants in world plants are drawn over bugs
+	 * draws bugs, plants and obstacles in world
 	 */
 	public void drawWorld() {
 		// draw top border
