@@ -1,5 +1,4 @@
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bug {
@@ -11,6 +10,7 @@ public class Bug {
 	protected int y;
 	protected int energy;
 	protected int id;
+	protected int smellRange;
 
 	// constructors
 
@@ -23,10 +23,11 @@ public class Bug {
 		this.y = 1;
 		this.energy = 100;
 		this.id = 12345;
+		this.smellRange = 2;
 
 	}
 
-	public Bug(String species, String name, char symbol, int x, int y, int energy, int id) {
+	public Bug(String species, String name, char symbol, int x, int y, int energy, int id, int smellRange) {
 		this.species = species;
 		this.name = name;
 		this.symbol = symbol;
@@ -34,6 +35,7 @@ public class Bug {
 		this.y = y;
 		this.energy = energy;
 		this.id = id;
+		this.smellRange = smellRange;
 
 	}
 
@@ -184,9 +186,9 @@ public class Bug {
 	 * if the bug doesn't smell food, returns "none"
 	 * priority is given to North, then South, then East, then West
 	 */
-	public String smellFood(World world, int range) {
+	public String smellFood(World world) {
 		
-		for (int curDistance = 1; curDistance <= range; curDistance++ ) {
+		for (int curDistance = 1; curDistance <= this.smellRange; curDistance++ ) {
 			int curX = 1;
 			int curY = 1;
 			

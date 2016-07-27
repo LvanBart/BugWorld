@@ -28,7 +28,7 @@ public class World {
 			int randX = (int) (1 + Math.random() * width - 1);
 			int randY = (int) (1 + Math.random() * height - 1);
 
-			bugs.add(new Bug("ant", "bug", '1', randX, randY, 50, 2364283));
+			bugs.add(new Bug("ant", "bug", '1', randX, randY, 50, 2364283, 2));
 		}
 
 		this.drawWorld();
@@ -43,8 +43,8 @@ public class World {
 
 		// create bugs, add to bugs ArrayList
 
-		Bug bug1 = new Bug("fly", "James", 'a', 2, 2, 50, 7628368);
-		Bug bug2 = new Bug("cockroach", "Penelope", 'b', 20, 20, 23, 73645);
+		Bug bug1 = new Bug("fly", "James", 'a', 2, 2, 50, 7628368, 2);
+		Bug bug2 = new Bug("cockroach", "Penelope", 'b', 20, 20, 23, 73645, 2);
 		Bug bug3 = new JumpingBug("grasshopper", "Earl", 'c', 8, 9, 45, 2839847);
 		Bug bug4 = new CrawlingBug("beetle", "Patty", 'd', 8, 19, 45, 2839847);
 		Bug bug5 = new FlyingBug("bee", "Lola", 'e', 4, 7, 45, 2839847);
@@ -159,7 +159,7 @@ public class World {
 	public void updateWorld() {
 		// make each bug move
 		for (Bug b : this.bugs) {
-			String direction = b.smellFood(this, 2);
+			String direction = b.smellFood(this);
 			
 			// if bug doesn't smell food, pick random direction
 			if (direction.equals("none")) {

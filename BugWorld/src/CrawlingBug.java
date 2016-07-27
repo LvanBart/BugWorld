@@ -8,7 +8,7 @@ public class CrawlingBug extends Bug {
 	}
 	
 	public CrawlingBug(String species, String name, char symbol, int x, int y, int energy, int id) {
-		super(species, name, symbol, x, y, energy, id);
+		super(species, name, symbol, x, y, energy, id, 2);
 	}
 	
 }
