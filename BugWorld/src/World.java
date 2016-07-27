@@ -25,7 +25,7 @@ public class World {
 		System.out.println("How many times do you want world to refresh?: ");
 		int numRefreshes = scan.nextInt();
 		
-		System.out.println("Enter number of bugs (max 20: ");
+		System.out.println("Enter number of bugs (max 20): ");
 		int numBugs = scan.nextInt();
 		if (numBugs < 0) {
 			numBugs = 0;
@@ -40,6 +40,9 @@ public class World {
 			numPlants = 0;
 		}
 		
+		System.out.println("Enter number of obstacles: ");
+		int numObstacles = scan.nextInt();
+		
 		System.out.println("Enter world width: ");
 		int worldWidth = scan.nextInt();
 		this.width = worldWidth;
@@ -51,9 +54,9 @@ public class World {
 		scan.close();
 		
 		// create bugs (with random positions), add to bugs ArrayList
-		for (int i = 0; i < symbols.length; i++) {
-			int x = (int)(1 + Math.random() * width - 1);
-			int y = (int)(1 + Math.random() * height - 1);
+		for (int i = 0; i < numBugs; i++) {
+			int x = 1 + (int)(Math.random() * worldWidth);
+			int y = 1 + (int)(Math.random() * worldHeight);
 			char bugSymbol = symbols[i];
 			
 			Bug bug = new Bug("ant", "Bob", bugSymbol, x, y, 50, 123, 2);
@@ -61,12 +64,14 @@ public class World {
 		}
 		
 		// create plants (all start at size 0) at random positions
-		for (int i = 0; i < 3; i++) {
-			int x = (int)(1 + Math.random() * width - 1);
-			int y = (int)(1 + Math.random() * height - 1);
+		for (int i = 0; i < numPlants; i++) {
+			int x = 1 + (int)(Math.random() * worldWidth);
+			int y = 1 + (int)(Math.random() * worldHeight);
 			
 			this.plants.add(new Plant(0, x, y));
 		}
+		
+		// create obstacles at random positions
 		
 		
 		this.drawWorld();
