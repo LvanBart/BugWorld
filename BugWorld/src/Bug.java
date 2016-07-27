@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Bug {
@@ -177,6 +178,53 @@ public class Bug {
 
 		scan.close();
 
+	}
+	
+	/* returns the direction in which there is food within the specified range of the bug
+	 * if the bug doesn't smell food, returns "none"
+	 * priority is given to North, then South, then East, then West
+	 */
+	public String smellFood(World world, int range) {
+		
+		for (int curDistance = 1; curDistance < range; curDistance++ ) {
+			int curX = 1;
+			int curY = 1;
+			
+			// north
+			curX = this.x;
+			curY = this.y - curDistance;
+					
+			if (world.getPlantAt(curX, curY) != null) {
+				return "north";
+			}
+			
+			// south
+			curX = this.x;
+			curY = this.y + curDistance;
+					
+			if (world.getPlantAt(curX, curY) != null) {
+				return "south";
+			}
+			
+			// east
+			curX = this.x + curDistance;
+			curY = this.y;
+					
+			if (world.getPlantAt(curX, curY) != null) {
+				return "east";
+			}
+			
+			// west
+			curX = this.x - curDistance;
+			curY = this.y;
+					
+			if (world.getPlantAt(curX, curY) != null) {
+				return "west";
+			}
+		}
+		
+		
+		return "none";
 	}
 
 }
